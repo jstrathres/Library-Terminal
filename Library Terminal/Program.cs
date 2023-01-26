@@ -1,4 +1,6 @@
 ﻿using Library_Terminal;
+using System.ComponentModel.DataAnnotations;
+
 
 bool runProgram = true;
 
@@ -27,6 +29,7 @@ while (runProgram)
     Console.WriteLine("1. View all books");
     Console.WriteLine("2. Search by author");
     Console.WriteLine("3. Search by title");
+    Console.WriteLine("4. Quit");
 
     int choice = int.Parse(Console.ReadLine());
     if (choice ==1)
@@ -36,6 +39,8 @@ while (runProgram)
         {
             Console.WriteLine($"{b.Title}|{b.Author}|{b.DueDate}");
         }
+        Console.WriteLine("Would you like to check out a book? y/n");
+
     }
     else if (choice ==2)
     {
@@ -50,7 +55,21 @@ while (runProgram)
     else if (choice ==3)
     {
         //Search by title keyword
+        Console.WriteLine("Please enter the title: ");
+        string title = Console.ReadLine().ToLower().Trim();
+        foreach (Book b in books.Where(b => b.Title.ToLower() == title))
+        {
+            Console.WriteLine($"{b.Title} by {b.Author}");   //might have to readjust all this, dunno what it means by "keyword"
+        }
     }
+    else if (choice ==4)
+    {
+        runProgram = false;
+        Console.WriteLine("Goodbye");
+    }
+
+
+    runProgram = Library_Terminal.Validator.GetContinue("\nContinue?");
 
 
 }
