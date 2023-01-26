@@ -1,4 +1,7 @@
-﻿using Library_Terminal;
+﻿//https://github.com/jstrathres/Library-Terminal
+
+
+using Library_Terminal;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -7,19 +10,19 @@ bool runProgram = true;
 
 List<Book> books = new List<Book>()
 {
-new Book("Rocky", "Stallone", true, DateTime.Now),
-new Book("r", "r", true, DateTime.Now),
-//new Book("", "", , ),
-//new Book("", "", , ),
-//new Book("", "", , ),
-//new Book("", "", , )
-//new Book("", "", , )
-//new Book("", "", , )
-//new Book("", "", , )
-//new Book("", "", , )
-//new Book("", "", , )
-//new Book("", "", , )
-//new Book("", "", , )
+new Book("Rocky", "S. Stallone", true, DateTime.Now),
+new Book("Space", "B. Arthur", false, DateTime.Now),
+new Book("History", "G. Washington",false,DateTime.Now),
+new Book("Penguins", "J. Arthur", true, DateTime.Now),
+new Book("Lord of the Rings", "", true, DateTime.Now),
+new Book("War and Peace", "Leo Tolstoy", false, DateTime.Now),
+new Book("The Great Gatsby", "F. Scott Fitzgerald", true, DateTime.Now),
+new Book("Middlemarch", "George Eliot", true, DateTime.Now),
+new Book("The Adventures of Huckleberry Finn", "Mark Twain", false, DateTime.Now),
+new Book("In Search of Lost Time", "Marcel Proust", true, DateTime.Now),
+new Book("Hamlet", "William Shakespeare", true, DateTime.Now),
+new Book("Moby Dick", "Herman Melville", true, DateTime.Now),
+new Book("Ulysses", "James Joyce", true, DateTime.Now)
 };
 
 
