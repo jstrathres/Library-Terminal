@@ -32,7 +32,9 @@ while (runProgram)
     Console.WriteLine("1. View all books");
     Console.WriteLine("2. Search by author");
     Console.WriteLine("3. Search by title");
-    Console.WriteLine("4. Quit");
+    Console.WriteLine("4. Return a book");
+    Console.WriteLine("5. Quit");
+    
 
     int choice = int.Parse(Console.ReadLine());
     if (choice ==1)
@@ -66,6 +68,10 @@ while (runProgram)
         }
     }
     else if (choice ==4)
+    {
+
+    }
+    else if (choice ==5)
     {
         runProgram = false;
         Console.WriteLine("Goodbye");
