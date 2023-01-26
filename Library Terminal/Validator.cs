@@ -13,7 +13,7 @@ namespace Library_Terminal
             int result = 0;
             Console.WriteLine("Please enter a number.");
 
-            while (int.TryParse(Console.ReadLine(), out result) == false)
+            while (int.TryParse(Console.ReadLine(), out result) == false || result < 1 || result > 6 )
             {
                 Console.WriteLine("Invalid Input. Try again");
             }
