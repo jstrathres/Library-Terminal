@@ -58,7 +58,7 @@ while (runProgram)
         foreach (Book b in books.Where(b => b.Author.ToUpper() == author))
         {
             Console.WriteLine($"{b.Title} by {b.Author}");
-            if (b.Status = true)
+            if (b.Author.ToUpper() == author && b.Status == true)
             {
                 Console.WriteLine("This book is available to check out");
             }
@@ -76,7 +76,7 @@ while (runProgram)
         foreach (Book b in books.Where(b => b.Title.ToUpper() == title))
         {
             Console.WriteLine($"{b.Title} by {b.Author}");   //might have to readjust all this, dunno what it means by "keyword"
-            if (b.Status = true)
+            if (b.Title.ToUpper() == title && b.Status == true)
             {
                 Console.WriteLine("This book is available to check out");
             }
