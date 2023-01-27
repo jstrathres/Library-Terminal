@@ -119,20 +119,23 @@ while (runProgram)
             Console.WriteLine("Which book would you like to check out?");
             BookChoice = Console.ReadLine().ToUpper().Trim();
             if (books.Any(b => b.Title.ToUpper() == BookChoice))
-                foreach (Book b in books)
             {
-                if (b.Title.ToUpper() == BookChoice && b.Status == true)
+                foreach (Book b in books)
                 {
-                    b.DueDate = b.DueDate.AddDays(14);
-                    Console.WriteLine($"Ok, your due date is: {b.DueDate}");
-                    books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
-                    break;
-                }
-                else if (b.Title.ToUpper() == BookChoice && b.Status == false)
-                {
-                    Console.WriteLine("Sorry, this isn't available.");
-                    break;
-                }
+                    if (b.Title.ToUpper() == BookChoice && b.Status == true)
+                    {
+                        b.DueDate = b.DueDate.AddDays(14);
+                        Console.WriteLine($"Ok, your due date is: {b.DueDate}");
+                        books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
+                        break;
+                    }
+                    else if (b.Title.ToUpper() == BookChoice && b.Status == false)
+                    {
+                        Console.WriteLine("Sorry, this isn't available.");
+                        break;
+                    }
+                }break;
+                
             }
         }
         
