@@ -55,21 +55,32 @@ while (runProgram)
     else if (choice == 2)
     {
         //Search by author
-
-        Console.Write("Please enter the author: ");
-        string author = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books.Where(b => b.Author.ToUpper().Contains(author)))
+        string author = "";
+        while (true)
         {
-            Console.WriteLine($"{b.Title} by {b.Author}");
-            if (b.Author.ToUpper().Contains(author) && b.Status == true)
+            Console.Write("Please enter the author: ");
+            author = Console.ReadLine().ToUpper().Trim();
+            if (books.Any(b => b.Author.ToUpper().Contains(author)))
             {
-                Console.WriteLine("This book is available to check out");
-            }
-            else
-            {
-                Console.WriteLine("This book is not available to check out");
+                foreach (Book b in books.Where(b => b.Author.ToUpper().Contains(author)))
+                {
+                    Console.WriteLine($"{b.Title} by {b.Author}");
+                    if (b.Author.ToUpper().Contains(author) && b.Status == true)
+                    {
+                        Console.WriteLine("This book is available to check out");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This book is not available to check out");
+                        break;
+                    }
+                } break;
             }
         }
+        
+        
+        
     }
     else if (choice == 3)
     {
