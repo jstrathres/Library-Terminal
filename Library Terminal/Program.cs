@@ -125,6 +125,7 @@ while (runProgram)
                 Console.WriteLine("Ok thanks");
                 //updating status of book
                 books.First(b => b.Title.ToUpper() == ReturnBook).Status = true;
+                SelectedBook.DueDate = DateTime.Now;
             }
             else
             {
