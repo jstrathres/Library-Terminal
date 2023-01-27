@@ -47,6 +47,7 @@ while (runProgram)
         foreach (Book b in books)
         {
             Console.WriteLine($"{b.Title}|{b.Author}");
+            
         }
     }
     else if (choice == 2)
@@ -56,7 +57,15 @@ while (runProgram)
         string author = Console.ReadLine().ToUpper().Trim();
         foreach (Book b in books.Where(b => b.Author.ToUpper() == author))
         {
-            Console.WriteLine($"{b.Title}");
+            Console.WriteLine($"{b.Title} by {b.Author}");
+            if (b.Status = true)
+            {
+                Console.WriteLine("This book is available to check out");
+            }
+            else
+            {
+                Console.WriteLine("This book is not available to check out");
+            }
         }
     }
     else if (choice == 3)
@@ -67,6 +76,14 @@ while (runProgram)
         foreach (Book b in books.Where(b => b.Title.ToUpper() == title))
         {
             Console.WriteLine($"{b.Title} by {b.Author}");   //might have to readjust all this, dunno what it means by "keyword"
+            if (b.Status = true)
+            {
+                Console.WriteLine("This book is available to check out");
+            }
+            else
+            {
+                Console.WriteLine("This book is not available to check out");
+            }
         }
     }
     else if (choice == 4) //check out a book
@@ -79,7 +96,7 @@ while (runProgram)
             {
                 b.DueDate = b.DueDate.AddDays(14);
                 Console.WriteLine($"Ok, your due date is: {b.DueDate}");
-                b.Status = false;
+                books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
                 break;
             }
             else
@@ -125,6 +142,7 @@ while (runProgram)
     {
         runProgram = false;
         Console.WriteLine("Goodbye");
+        break;
     }
 
 
