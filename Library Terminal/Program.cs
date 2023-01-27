@@ -48,9 +48,8 @@ while (runProgram)
         //Display all Books
         foreach (Book b in books)
         {
-           
             Console.WriteLine(String.Format("{0,-25}  {1,-25}", b.Title, b.Author));
-            
+
         }
     }
     else if (choice == 2)
@@ -58,7 +57,7 @@ while (runProgram)
         //Search by author
         Console.Write("Please enter the author: ");
         string author = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books.Where(b => b.Author.ToUpper() == author))
+        foreach (Book b in books.Where(b => b.Author.ToUpper().Contains(author)))
         {
             Console.WriteLine($"{b.Title} by {b.Author}");
             if (b.Author.ToUpper() == author && b.Status == true)
@@ -76,7 +75,7 @@ while (runProgram)
         //Search by title keyword
         Console.Write("Please enter the title: ");
         string title = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books.Where(b => b.Title.ToUpper() == title))
+        foreach (Book b in books.Where(b => b.Title.ToUpper().Contains(title)))
         {
             Console.WriteLine($"{b.Title} by {b.Author}");   //might have to readjust all this, dunno what it means by "keyword"
             if (b.Title.ToUpper() == title && b.Status == true)
