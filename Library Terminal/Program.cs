@@ -71,7 +71,7 @@ while (runProgram)
     else if (choice == 3)
     {
         //Search by title keyword
-        Console.WriteLine("Please enter the title: ");
+        Console.Write("Please enter the title: ");
         string title = Console.ReadLine().ToUpper().Trim();
         foreach (Book b in books.Where(b => b.Title.ToUpper() == title))
         {
@@ -88,8 +88,9 @@ while (runProgram)
     }
     else if (choice == 4) //check out a book
     {
+        string BookChoice = "";
         Console.WriteLine("Which book would you like to check out?");
-        string BookChoice = Console.ReadLine().ToUpper().Trim();
+        BookChoice = Console.ReadLine().ToUpper().Trim();
         foreach (Book b in books)
         {
             if (b.Title.ToUpper() == BookChoice && b.Status == true)
@@ -99,7 +100,7 @@ while (runProgram)
                 books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
                 break;
             }
-            else
+            else if (b.Title.ToUpper() == BookChoice && b.Status == false)
             {
                 Console.WriteLine("Sorry, this isn't available.");
                 break;
