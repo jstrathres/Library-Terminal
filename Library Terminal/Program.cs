@@ -114,23 +114,28 @@ while (runProgram)
     else if (choice == 4) //check out a book
     {
         string BookChoice = "";
-        Console.WriteLine("Which book would you like to check out?");
-        BookChoice = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books)
+        while (true)
         {
-            if (b.Title.ToUpper() == BookChoice && b.Status == true)
+            Console.WriteLine("Which book would you like to check out?");
+            BookChoice = Console.ReadLine().ToUpper().Trim();
+            if (books.Any(b => b.Title.ToUpper() == BookChoice))
+                foreach (Book b in books)
             {
-                b.DueDate = b.DueDate.AddDays(14);
-                Console.WriteLine($"Ok, your due date is: {b.DueDate}");
-                books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
-                break;
-            }
-            else if (b.Title.ToUpper() == BookChoice && b.Status == false)
-            {
-                Console.WriteLine("Sorry, this isn't available.");
-                break;
+                if (b.Title.ToUpper() == BookChoice && b.Status == true)
+                {
+                    b.DueDate = b.DueDate.AddDays(14);
+                    Console.WriteLine($"Ok, your due date is: {b.DueDate}");
+                    books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
+                    break;
+                }
+                else if (b.Title.ToUpper() == BookChoice && b.Status == false)
+                {
+                    Console.WriteLine("Sorry, this isn't available.");
+                    break;
+                }
             }
         }
+        
 
 
 
