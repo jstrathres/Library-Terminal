@@ -18,7 +18,7 @@ new Book("LORD OF THE RINGS", "JOHN TOLKIEN", true, DateTime.Now),
 new Book("WAR AND PEACE", "LEO TOLSTOY", false, DateTime.Now),
 new Book("THE GREAT GATSBY", "SCOTT FITZGERALD", true, DateTime.Now),
 new Book("MIDDLEMARCH", "GEORGE ELLIOTT", true, DateTime.Now),
-new Book("THE ADVENTURES OF HUCKLEBERRY FINN", "MARK TWAIN", false, DateTime.Now),
+new Book("HUCKLEBERRY FINN", "MARK TWAIN", false, DateTime.Now),
 new Book("IN SEARCH OF LOST TIME", "MARCEL PROUST", true, DateTime.Now),
 new Book("HAMLET", "WILLIAM SHAKESPEARE", true, DateTime.Now),
 new Book("MOBY DICK", "HERMAN MELVILLE", true, DateTime.Now),
@@ -43,10 +43,13 @@ while (runProgram)
 
     if (choice == 1)
     {
+        Console.WriteLine(String.Format("{0,-25}  {1,-25}", "Title", "Author"));
+        Console.WriteLine(String.Format("{0,-25}  {1,-25}", "=====", "======"));
         //Display all Books
         foreach (Book b in books)
         {
-            Console.WriteLine($"{b.Title}|{b.Author}");
+           
+            Console.WriteLine(String.Format("{0,-25}  {1,-25}", b.Title, b.Author));
             
         }
     }
