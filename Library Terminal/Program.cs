@@ -75,7 +75,7 @@ while (runProgram)
                         Console.WriteLine("This book is not available to check out");
                         break;
                     }
-                } break;
+                }break;
             }
         }
         
@@ -85,20 +85,27 @@ while (runProgram)
     else if (choice == 3)
     {
         //Search by title keyword
-        Console.Write("Please enter the title: ");
-        string title = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books.Where(b => b.Title.ToUpper().Contains(title)))
+        string title = "";
+        while (true)
         {
-            Console.WriteLine($"{b.Title} by {b.Author}");   //might have to readjust all this, dunno what it means by "keyword"
-            if (b.Title.ToUpper().Contains(title) && b.Status == true)
+            Console.Write("Please enter the title: ");
+            title = Console.ReadLine().ToUpper().Trim();
+            foreach (Book b in books.Where(b => b.Title.ToUpper().Contains(title)))
             {
-                Console.WriteLine("This book is available to check out");
-            }
-            else
-            {
-                Console.WriteLine("This book is not available to check out");
-            }
+                Console.WriteLine($"{b.Title} by {b.Author}");   
+                if (b.Title.ToUpper().Contains(title) && b.Status == true)
+                {
+                    Console.WriteLine("This book is available to check out");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("This book is not available to check out");
+                    break;
+                }
+            }break;
         }
+        
     }
     else if (choice == 4) //check out a book
     {
