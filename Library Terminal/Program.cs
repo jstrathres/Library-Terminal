@@ -90,20 +90,24 @@ while (runProgram)
         {
             Console.Write("Please enter the title: ");
             title = Console.ReadLine().ToUpper().Trim();
-            foreach (Book b in books.Where(b => b.Title.ToUpper().Contains(title)))
+            if (books.Any(b => b.Title.ToUpper().Contains(title)))
             {
-                Console.WriteLine($"{b.Title} by {b.Author}");   
-                if (b.Title.ToUpper().Contains(title) && b.Status == true)
+                foreach (Book b in books.Where(b => b.Title.ToUpper().Contains(title)))
                 {
-                    Console.WriteLine("This book is available to check out");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("This book is not available to check out");
-                    break;
-                }
-            }break;
+                    Console.WriteLine($"{b.Title} by {b.Author}");
+                    if (b.Title.ToUpper().Contains(title) && b.Status == true)
+                    {
+                        Console.WriteLine("This book is available to check out");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This book is not available to check out");
+                        break;
+                    }
+                }break;
+            
+            }
         }
         
     }
