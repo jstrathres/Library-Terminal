@@ -47,6 +47,7 @@ while (runProgram)
         {
             Console.WriteLine(string.Format("{0,-25} {1,-25} {2,-25}",b.Title, b.Author ,b.statusCheck()));
         }
+        
     }
     else if (choice == 2)
     {
@@ -72,9 +73,11 @@ while (runProgram)
                         break;
                     }
                 }
+                
                 break;
             }
         }
+        
     }
     else if (choice == 3)
     {
@@ -100,9 +103,11 @@ while (runProgram)
                         break;
                     }
                 }
+                
                 break;
             }
         }
+        
     }
     else if (choice == 4) //check out a book
     {
@@ -111,26 +116,37 @@ while (runProgram)
         {
             Console.WriteLine("Which book would you like to check out?");
             BookChoice = Console.ReadLine().ToUpper().Trim();
-            if (books.Any(b => b.Title.ToUpper() == BookChoice))
+            if (books.Any(b => b.Title.ToUpper().Contains(BookChoice)))
             {
                 foreach (Book b in books)
                 {
-                    if (b.Title.ToUpper() == BookChoice && b.Status == true)
+                    if (b.Title.ToUpper().Contains(BookChoice) && b.Status == true)
                     {
-                        b.DueDate = b.DueDate.AddDays(14);
-                        Console.WriteLine($"Ok, your due date is: {b.DueDate}");
-                        books.First(b => b.Title.ToUpper() == BookChoice).Status = false;
-                        break;
+                        Console.WriteLine($"Did you mean {b.Title} by {b.Author}?");
+                        string yesOrNo = Console.ReadLine();
+                        if (yesOrNo == "yes")
+                        {
+                            b.DueDate = b.DueDate.AddDays(14);
+                            Console.WriteLine($"Ok, your due date is: {b.DueDate}");
+                            books.First(b => b.Title.ToUpper().Contains(BookChoice)).Status = false;
+                            break;
+                        } else
+                        {
+                            break;
+                        }
+                        
                     }
-                    else if (b.Title.ToUpper() == BookChoice && b.Status == false)
+                    else if (b.Title.ToUpper().Contains(BookChoice) && b.Status == false)
                     {
                         Console.WriteLine("Sorry, this isn't available.");
                         break;
                     }
                 }
+                
                 break;
             }
         }
+        
     }
     else if (choice == 5) //return a book
     {
@@ -166,6 +182,7 @@ while (runProgram)
         break;
     }
     runProgram = Library_Terminal.Validator.GetContinue("\nContinue?");
+    Console.Clear();
 }
 
 
