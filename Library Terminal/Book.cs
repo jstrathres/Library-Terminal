@@ -28,13 +28,33 @@ namespace Library_Terminal
         {
             if (Status == true)
             {
-                return $"{Title} by {Author} is available";
+                return $"{Title} by {Author} ";
             }
             else
             {
-                return $"{Title} by {Author} is not available";
+                return $"{Title} by {Author} ";
             }
         }
+
+        public string statusCheck()
+        {
+            if (Status == true)
+            {
+                return "is available";
+            }
+            else
+            {
+                return "is not available";
+            }
+        }
+
+
+
+
+
+
+
+
     }
 
         

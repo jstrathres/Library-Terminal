@@ -45,7 +45,7 @@ while (runProgram)
         //Display all Books
         foreach (Book b in books)
         {
-            Console.WriteLine(b.GetDetails());
+            Console.WriteLine(string.Format("{0,-25} {1,-25} {2,-25}",b.Title, b.Author ,b.statusCheck()));
         }
     }
     else if (choice == 2)
