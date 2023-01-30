@@ -35,6 +35,7 @@ while (runProgram)
     Console.WriteLine("4. Check out a book");
     Console.WriteLine("5. Return a book");
     Console.WriteLine("6. Quit");
+    Console.WriteLine("7. Ashes to Ashes");
   
     int choice = Library_Terminal.Validator.GetUserNumberInt();
 
@@ -179,6 +180,39 @@ while (runProgram)
     {
         runProgram = false;
         Console.WriteLine("Goodbye");
+        break;
+    }
+    else if (choice == 7)
+    {
+        runProgram = false;
+Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("");
+
+Console.WriteLine("                                          *");
+Console.WriteLine("                                           *");
+Console.WriteLine("                                           ***");
+Console.WriteLine("                                           ****");
+Console.WriteLine("                                           ****** *");
+Console.WriteLine("                                           **** *****");
+Console.WriteLine("                                          ****  *******");
+Console.WriteLine("                                    *    *****   *******");
+Console.WriteLine("                                     *   ******   *******       *");
+Console.WriteLine("                                     **  ******    *******     *");
+Console.WriteLine("                                     *** ******      *******   **");
+Console.WriteLine("                                     *** *****       *******  ***");
+Console.WriteLine("                                 *    ******          ******  *****");
+Console.WriteLine("                                 **   *****           *****  ****** ");
+Console.WriteLine("                                 **  *****             ****   ******");
+Console.WriteLine("                             *  ********              **************");
+Console.WriteLine("                            ** ********                * ************");
+Console.WriteLine("                           ***********                 *************");
+Console.WriteLine("                           ***********                 ***********");
+Console.WriteLine("                            ***********              ***********");
+Console.WriteLine("                             ***********           ***********");
+Console.WriteLine("                              *************       ***************");
+Console.WriteLine("                               ********************************       ");
+Console.WriteLine("                           ***************************************         ");
+Console.WriteLine("                                           Goodbye");
         break;
     }
     runProgram = Library_Terminal.Validator.GetContinue("\nContinue?");
