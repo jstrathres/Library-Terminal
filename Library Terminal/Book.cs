@@ -40,11 +40,11 @@ namespace Library_Terminal
         {
             if (Status == true)
             {
-                return "is available";
+                return "Is Available";
             }
             else
             {
-                return "is not available";
+                return "Not available";
             }
         }
 

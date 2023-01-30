@@ -40,8 +40,8 @@ while (runProgram)
 
     if (choice == 1)
     {
-        //Console.WriteLine(String.Format("{0,-25}  {1,-25}", "Title", "Author"));
-        //Console.WriteLine(String.Format("{0,-25}  {1,-25}", "=====", "======"));
+        Console.WriteLine(String.Format("{0,-25}  {1,-25} {2,-25}", "Title", "Author", "Availability"));
+        Console.WriteLine(String.Format("{0,-25}  {1,-25} {2,-25}", "=====", "======", "============"));
         //Display all Books
         foreach (Book b in books)
         {
