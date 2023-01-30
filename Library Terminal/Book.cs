@@ -23,12 +23,26 @@ namespace Library_Terminal
             DueDate = _dueDate;
         }
 
-        
 
+        public string GetDetails()
+        {
+            if (Status == true)
+            {
+                return $"{Title} by {Author} is available";
+            }
+            else
+            {
+                return $"{Title} by {Author} is not available";
+            }
+        }
     }
 
+        
 
 }
+
+
+
 
 
 

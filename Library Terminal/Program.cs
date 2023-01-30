@@ -35,21 +35,17 @@ while (runProgram)
     Console.WriteLine("4. Check out a book");
     Console.WriteLine("5. Return a book");
     Console.WriteLine("6. Quit");
-
-    
-
   
     int choice = Library_Terminal.Validator.GetUserNumberInt();
 
     if (choice == 1)
     {
-        Console.WriteLine(String.Format("{0,-25}  {1,-25}", "Title", "Author"));
-        Console.WriteLine(String.Format("{0,-25}  {1,-25}", "=====", "======"));
+        //Console.WriteLine(String.Format("{0,-25}  {1,-25}", "Title", "Author"));
+        //Console.WriteLine(String.Format("{0,-25}  {1,-25}", "=====", "======"));
         //Display all Books
         foreach (Book b in books)
         {
-            Console.WriteLine(String.Format("{0,-25}  {1,-25}", b.Title, b.Author));
-
+            Console.WriteLine(b.GetDetails());
         }
     }
     else if (choice == 2)
@@ -75,12 +71,10 @@ while (runProgram)
                         Console.WriteLine("This book is not available to check out");
                         break;
                     }
-                }break;
+                }
+                break;
             }
         }
-        
-        
-        
     }
     else if (choice == 3)
     {
@@ -105,11 +99,10 @@ while (runProgram)
                         Console.WriteLine("This book is not available to check out");
                         break;
                     }
-                }break;
-            
+                }
+                break;
             }
         }
-        
     }
     else if (choice == 4) //check out a book
     {
@@ -134,14 +127,10 @@ while (runProgram)
                         Console.WriteLine("Sorry, this isn't available.");
                         break;
                     }
-                }break;
-                
+                }
+                break;
             }
         }
-        
-
-
-
     }
     else if (choice == 5) //return a book
     {
@@ -151,9 +140,9 @@ while (runProgram)
         //if the book exists in library
         if (books.Any(b => b.Title.ToUpper() == ReturnBook))
         {
-            
+
             Book SelectedBook = books.First(b => b.Title.ToUpper() == ReturnBook);
-            if(SelectedBook.Status == false)
+            if (SelectedBook.Status == false)
             {
                 Console.WriteLine("Ok thanks");
                 //updating status of book
@@ -164,14 +153,11 @@ while (runProgram)
             {
                 Console.WriteLine("This book has already been returned.");
             }
-            
         }
         else
         {
             Console.WriteLine("This book is not in the library");
         }
-
-
     }
     else if (choice == 6)
     {
@@ -179,11 +165,7 @@ while (runProgram)
         Console.WriteLine("Goodbye");
         break;
     }
-
-
     runProgram = Library_Terminal.Validator.GetContinue("\nContinue?");
-
-
 }
 
 
