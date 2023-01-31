@@ -160,19 +160,19 @@ while (runProgram)
     else if (choice == 5) //return a book
     {
         string ReturnBook = "";
-        Console.WriteLine("Which book would you like to return?");
+        Console.WriteLine("Please list the full book title you would you like to return");
 
         ReturnBook = Console.ReadLine().ToUpper().Trim();
         //if the book exists in library
 
-        if (books.Any(b => b.Title.ToUpper().Contains(ReturnBook)))
+        if (books.Any(b => b.Title.ToUpper()== ReturnBook))
         {
-            Book SelectedBook = books.First(b => b.Title.ToUpper().Contains(ReturnBook));
+            Book SelectedBook = books.First(b => b.Title.ToUpper()==ReturnBook);
             if (SelectedBook.Status == false)
             {
                 Console.WriteLine("Ok thanks");
                 //updating status of book
-                books.First(b => b.Title.ToUpper().Contains(ReturnBook)).Status = true;
+                books.First(b => b.Title.ToUpper() == ReturnBook).Status = true;
                 SelectedBook.DueDate = DateTime.Now;
             }
             else
