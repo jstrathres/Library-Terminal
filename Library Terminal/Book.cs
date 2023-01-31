@@ -24,18 +24,6 @@ namespace Library_Terminal
         }
 
 
-        public string GetDetails()
-        {
-            if (Status == true)
-            {
-                return $"{Title} by {Author} ";
-            }
-            else
-            {
-                return $"{Title} by {Author} ";
-            }
-        }
-
         public string statusCheck()
         {
             if (Status == true)

@@ -161,8 +161,10 @@ while (runProgram)
     {
         string ReturnBook = "";
         Console.WriteLine("Which book would you like to return?");
+
         ReturnBook = Console.ReadLine().ToUpper().Trim();
         //if the book exists in library
+
         if (books.Any(b => b.Title.ToUpper().Contains(ReturnBook)))
         {
             Book SelectedBook = books.First(b => b.Title.ToUpper().Contains(ReturnBook));
