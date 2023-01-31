@@ -22,5 +22,30 @@ namespace Library_Terminal
             Status = _status;
             DueDate = _dueDate;
         }
+
+
+        public string GetDetails()
+        {
+            if (Status == true)
+            {
+                return $"{Title} by {Author} ";
+            }
+            else
+            {
+                return $"{Title} by {Author} ";
+            }
+        }
+
+        public string statusCheck()
+        {
+            if (Status == true)
+            {
+                return "Is Available";
+            }
+            else
+            {
+                return "Not available";
+            }
+        }
     }
 }

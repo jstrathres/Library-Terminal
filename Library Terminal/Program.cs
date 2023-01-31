@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 
 bool runProgram = true;
- 
+
 
 List<Book> books = new List<Book>()
 {
@@ -18,7 +18,7 @@ new Book("LORD OF THE RINGS", "JOHN TOLKIEN", true, DateTime.Now),
 new Book("WAR AND PEACE", "LEO TOLSTOY", false, DateTime.Now),
 new Book("THE GREAT GATSBY", "SCOTT FITZGERALD", true, DateTime.Now),
 new Book("MIDDLEMARCH", "GEORGE ELLIOTT", true, DateTime.Now),
-new Book("THE ADVENTURES OF HUCKLEBERRY FINN", "MARK TWAIN", false, DateTime.Now),
+new Book("HUCKLEBERRY FINN", "MARK TWAIN", false, DateTime.Now),
 new Book("IN SEARCH OF LOST TIME", "MARCEL PROUST", true, DateTime.Now),
 new Book("HAMLET", "WILLIAM SHAKESPEARE", true, DateTime.Now),
 new Book("MOBY DICK", "HERMAN MELVILLE", true, DateTime.Now),
@@ -35,61 +35,126 @@ while (runProgram)
     Console.WriteLine("4. Check out a book");
     Console.WriteLine("5. Return a book");
     Console.WriteLine("6. Quit");
+    Console.WriteLine("7. Ashes to Ashes");
 
-    
-
-  
     int choice = Library_Terminal.Validator.GetUserNumberInt();
 
     if (choice == 1)
     {
+        Console.WriteLine(String.Format("{0,-25}  {1,-25} {2,-25}", "Title", "Author", "Availability"));
+        Console.WriteLine(String.Format("{0,-25}  {1,-25} {2,-25}", "=====", "======", "============"));
         //Display all Books
         foreach (Book b in books)
         {
-            Console.WriteLine($"{b.Title}|{b.Author}");
+            Console.WriteLine(string.Format("{0,-25} {1,-25} {2,-25}", b.Title, b.Author, b.statusCheck()));
         }
+
     }
     else if (choice == 2)
     {
         //Search by author
-        Console.Write("Please enter the author: ");
-        string author = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books.Where(b => b.Author.ToUpper() == author))
+        string author = "";
+        while (true)
         {
-            Console.WriteLine($"{b.Title}");
+            Console.Write("Please enter the author: ");
+            author = Console.ReadLine().ToUpper().Trim();
+            if (books.Any(b => b.Author.ToUpper().Contains(author)))
+            {
+                foreach (Book b in books.Where(b => b.Author.ToUpper().Contains(author)))
+                {
+                    Console.WriteLine($"{b.Title} by {b.Author}");
+                    if (b.Author.ToUpper().Contains(author) && b.Status == true)
+                    {
+                        Console.WriteLine("This book is available to check out");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This book is not available to check out");
+                        break;
+                    }
+                }
+
+                break;
+            }
         }
+
     }
     else if (choice == 3)
     {
         //Search by title keyword
-        Console.WriteLine("Please enter the title: ");
-        string title = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books.Where(b => b.Title.ToUpper() == title))
+        string title = "";
+        while (true)
         {
-            Console.WriteLine($"{b.Title} by {b.Author}");   //might have to readjust all this, dunno what it means by "keyword"
+            Console.Write("Please enter the title: ");
+            title = Console.ReadLine().ToUpper().Trim();
+            if (books.Any(b => b.Title.ToUpper().Contains(title)))
+            {
+                foreach (Book b in books.Where(b => b.Title.ToUpper().Contains(title)))
+                {
+                    Console.WriteLine($"{b.Title} by {b.Author}");
+                    if (b.Title.ToUpper().Contains(title) && b.Status == true)
+                    {
+                        Console.WriteLine("This book is available to check out");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This book is not available to check out");
+                        break;
+                    }
+                }
+
+                break;
+            }
         }
+
     }
     else if (choice == 4) //check out a book
     {
-        Console.WriteLine("Which book would you like to check out?");
-        string BookChoice = Console.ReadLine().ToUpper().Trim();
-        foreach (Book b in books)
+        string BookChoice = "";
+        while (true)
         {
-            if (b.Title.ToUpper() == BookChoice && b.Status == true)
+            Console.WriteLine("Which book would you like to check out?");
+            BookChoice = Console.ReadLine().ToUpper().Trim();
+            if (books.Any(b => b.Title.ToUpper().Contains(BookChoice)))
             {
-                b.DueDate = b.DueDate.AddDays(14);
-                Console.WriteLine($"Ok, your due date is: {b.DueDate}");
-                b.Status = false;
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Sorry, this isn't available.");
+                foreach (Book b in books)
+                {
+                    if (b.Title.ToUpper().Contains(BookChoice) && b.Status == true)
+                    {
+                        Console.WriteLine($"Did you mean {b.Title} by {b.Author}?");
+                        string yesOrNo = Console.ReadLine();
+                        if (yesOrNo == "yes")
+                        {
+                            b.DueDate = b.DueDate.AddDays(14);
+                            Console.WriteLine($"Ok, your due date is: {b.DueDate}");
+                            books.First(b => b.Title.ToUpper().Contains(BookChoice)).Status = false;
+                            break;
+                        }
+                        else if(yesOrNo == "y")
+                        {
+                            b.DueDate = b.DueDate.AddDays(14);
+                            Console.WriteLine($"Ok, your due date is: {b.DueDate}");
+                            books.First(b => b.Title.ToUpper().Contains(BookChoice)).Status = false;
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                    }
+                    else if (b.Title.ToUpper().Contains(BookChoice) && b.Status == false)
+                    {
+                        Console.WriteLine("Sorry, this isn't available.");
+                        break;
+                    }
+                }
+
                 break;
             }
         }
-
-
 
     }
     else if (choice == 5) //return a book
@@ -98,53 +163,65 @@ while (runProgram)
         Console.WriteLine("Which book would you like to return?");
         ReturnBook = Console.ReadLine().ToUpper().Trim();
         //if the book exists in library
-        if (books.Any(b => b.Title.ToUpper() == ReturnBook))
+        if (books.Any(b => b.Title.ToUpper().Contains(ReturnBook)))
         {
-            
-            Book SelectedBook = books.First(b => b.Title.ToUpper() == ReturnBook);
-            if(SelectedBook.Status == false)
+            Book SelectedBook = books.First(b => b.Title.ToUpper().Contains(ReturnBook));
+            if (SelectedBook.Status == false)
             {
                 Console.WriteLine("Ok thanks");
                 //updating status of book
-                books.First(b => b.Title.ToUpper() == ReturnBook).Status = true;
+                books.First(b => b.Title.ToUpper().Contains(ReturnBook)).Status = true;
+                SelectedBook.DueDate = DateTime.Now;
             }
             else
             {
                 Console.WriteLine("This book has already been returned.");
             }
-            
         }
         else
         {
             Console.WriteLine("This book is not in the library");
         }
-
-
     }
     else if (choice == 6)
     {
         runProgram = false;
         Console.WriteLine("Goodbye");
+        break;
     }
+    else if (choice == 7)
+    {
+        runProgram = false;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("");
 
-
+        Console.WriteLine("                                          *");
+        Console.WriteLine("                                           *");
+        Console.WriteLine("                                           ***");
+        Console.WriteLine("                                           ****");
+        Console.WriteLine("                                           ****** *");
+        Console.WriteLine("                                           **** *****");
+        Console.WriteLine("                                          ****  *******");
+        Console.WriteLine("                                    *    *****   *******");
+        Console.WriteLine("                                     *   ******   *******       *");
+        Console.WriteLine("                                     **  ******    *******     *");
+        Console.WriteLine("                                     *** ******      *******   **");
+        Console.WriteLine("                                     *** *****       *******  ***");
+        Console.WriteLine("                                 *    ******          ******  *****");
+        Console.WriteLine("                                 **   *****           *****  ****** ");
+        Console.WriteLine("                                 **  *****             ****   ******");
+        Console.WriteLine("                             *  ********              **************");
+        Console.WriteLine("                            ** ********                * ************");
+        Console.WriteLine("                           ***********                 *************");
+        Console.WriteLine("                           ***********                 ***********");
+        Console.WriteLine("                            ***********              ***********");
+        Console.WriteLine("                             ***********           ***********");
+        Console.WriteLine("                              *************       ***************");
+        Console.WriteLine("                               ********************************       ");
+        Console.WriteLine("                           ***************************************         ");
+        Console.WriteLine("                                           Goodbye");
+        break;
+    }
     runProgram = Library_Terminal.Validator.GetContinue("\nContinue?");
-
-
+    Console.Clear();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
